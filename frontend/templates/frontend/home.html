@@ -1,0 +1,8 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h2>Ласкаво просимо!</h2>
+<p>Виберіть дію:</p>
+<a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+<a href="{% url 'signin' %}" class="btn btn-secondary">Sign In</a>
+{% endblock %}

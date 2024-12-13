@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Successful</title>
+</head>
+<body>
+    <h1>Booking Successful!</h1>
+    <p><strong>Route:</strong> {{ ticket.route.from_location }} - {{ ticket.route.to_location }}</p>
+    <p><strong>Seat Number:</strong> {{ ticket.seat_number }}</p>
+    <p><strong>Status:</strong> {{ ticket.status }}</p>
+    <a href="{% url 'route_list_frontend' %}">Back to Routes</a>
+</body>
+</html>

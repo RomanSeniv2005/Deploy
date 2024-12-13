@@ -1,0 +1,51 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h2 class="text-center">Доступні маршрути</h2>
+<form method="GET" action="" class="mb-4">
+    <div class="mb-3">
+        <label for="from_location" class="form-label">Звідки:</label>
+        <input type="text" name="from_location" value="{{ from_location }}" class="form-control" placeholder="Введіть пункт відправлення">
+    </div>
+    <div class="mb-3">
+        <label for="to_location" class="form-label">Куди:</label>
+        <input type="text" name="to_location" value="{{ to_location }}" class="form-control" placeholder="Введіть пункт прибуття">
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Дата:</label>
+        <input type="date" name="date" value="{{ date }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Пошук</button>
+</form>
+
+{% if routes %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Звідки</th>
+                <th>Куди</th>
+                <th>Час відправлення</th>
+                <th>Час прибуття</th>
+                <th>Ціна</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for route in routes %}
+                <tr>
+                    <td>{{ route.from_location }}</td>
+                    <td>{{ route.to_location }}</td>
+                    <td>{{ route.departure_time }}</td>
+                    <td>{{ route.arrival_time }}</td>
+                    <td>{{ route.price }}</td>
+                    <td>
+                        <a href="{% url 'ticket_booking' route.id %}" class="btn btn-success">Забронювати квиток</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Маршрутів не знайдено. Будь ласка, змініть критерії пошуку.</p>
+{% endif %}
+{% endblock %}

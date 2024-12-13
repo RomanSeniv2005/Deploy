@@ -1,0 +1,38 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h2 class="text-center">Book Ticket for Route</h2>
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+        <p><strong>From:</strong> {{ route.from_location }}</p>
+        <p><strong>To:</strong> {{ route.to_location }}</p>
+        <p><strong>Departure:</strong> {{ route.departure_time }}</p>
+        <p><strong>Arrival:</strong> {{ route.arrival_time }}</p>
+        <p><strong>Price:</strong> {{ route.price }}</p>
+
+        <form method="POST" action="{% url 'book_ticket' route.id %}">
+            <div class="mb-3">
+                <label for="first_name" class="form-label">Ім'я</label>
+                <input type="text" name="first_name" id="first_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Прізвище</label>
+                <input type="text" name="last_name" id="last_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Електронна пошта</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="seat_number" class="form-label">Номер місця</label>
+                <input type="number" name="seat_number" id="seat_number" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Забронювати</button>
+        </form>
+
+        {% if error_message %}
+            <div class="alert alert-danger mt-3">{{ error_message }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
